@@ -7,9 +7,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function MediaCard(props) {
-    // console.log("../assets/" + props.img);
+    const cardStyle = {
+        display: "block",
+        transitionDuration: "0.3s",
+        height: "22vw", 
+        marginRight: "2vw",
+        marginLeft: "2vw",
+        marginBottom: "2vw",
+        marginLeft: "2vw",
+      };
     return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card style={cardStyle}>
       <CardMedia
         component="img"
         height="140"
@@ -25,7 +33,7 @@ export default function MediaCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
+        <Button size="small">Purchase</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>

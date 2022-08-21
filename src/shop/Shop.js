@@ -15,8 +15,13 @@ export default function Shop()
       );
   });
 
+  const gridStyle = {
+    marginTop: "7vw",
+    marginBottom: "5vw",
+  }
+
   return (
-  <Grid container spacing={4}>
+  <Grid container style={gridStyle}>
     {succ_list}
   </Grid>
   );
