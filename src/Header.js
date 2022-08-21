@@ -1,12 +1,19 @@
-import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/core";
-import React from "react";
+import { AppBar, Toolbar, Typography, makeStyles, Button, IconButton, Drawer, Link,MenuItem} from "@material-ui/core";
 import logo from './logo.png';
 import { Link as RouterLink } from "react-router-dom";
+// for responsiveness
+import React, { useState, useEffect } from "react";
+import { Menu as MenuIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#bddcba",
-    height: "80px"
+    height: "80px",
+    paddingRight: "30px",
+    paddingTop: "10px",
+    "@media (max-width: 900px)": {
+      paddingLeft: 0,
+    },
   },
 
   logoText: {
@@ -17,44 +24,138 @@ const useStyles = makeStyles(() => ({
     lineHeight: "18px",
     textAlign: "left",
     position: "absolute",
-    top: "18px",
-    left: "75px"
+    top: "8px",
+    left: "75px",
+    "@media (max-width: 900px)": {
+      left: "120px",
+    },
   },
   AppLogo: {
     position: "absolute",
-    top: "10px",
+
     left: "8px",
     width: '60px',
     height: '9vmin',
+    "@media (max-width: 900px)": {
+      left: "55px",
+      top:"5px",
+      width: '60px',
+      height: '55px',
+    },
 
   },
   menuButton: {
-      fontFamily: "Work Sans, sans-serif",
-      fontWeight: 700,
-      fontSize: "19px",
-      marginLeft: "40px",
-      left:"930px",
-      color:"inherit",
-      top:"9px"
-     
+    fontFamily: "Work Sans, sans-serif",
+    fontWeight: 700,
+    fontSize: "18px",
+    marginLeft: "37px",
+    color: "inherit",
   },
+  toolbar: {
+    display: "flex",
+    justifyContent: "flex-end",
 
- 
+  },
+  drawerContainer: {
+    padding: "20px 30px",
+  }
+
+
 }));
 
 
 export default function Header() {
-  const { header, logoText, AppLogo,menuButton,navButtons  } = useStyles();
+  
+// responsiveness
+  const [state, setState] = useState({
+    mobileView: false,
+    drawerOpen: false
+  });
 
+  const { mobileView, drawerOpen } = state;
+
+  
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 900
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    };
+
+    setResponsiveness();
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    }
+  }, []);
+
+  const displayMobile = () => {
+    const handleDrawerOpen = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const handleDrawerClose = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+    
+    return (
+      <Toolbar>
+        <IconButton
+          {...{
+            edge: "start",
+            color: "inherit",
+            "aria-label": "menu",
+            "aria-haspopup": "true",
+            onClick: handleDrawerOpen,
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer
+          {...{
+            anchor: "left",
+            open: drawerOpen,
+            onClose: handleDrawerClose,
+          }}
+        >
+          <div className={drawerContainer}>{getDrawerChoices()}</div>
+        </Drawer>
+<div>{succulentLogo}{succulentLogoText}</div>
+</Toolbar>
+    );
+  };
+  const getDrawerChoices = () => {
+    return headersData.map(({ label, href }) => {
+      return (
+        <Link
+          {...{
+            component: RouterLink,
+            to: href,
+            color: "inherit",
+            style: { textDecoration: "none" },
+            key: label,
+          }}
+        >
+          <MenuItem>{label}</MenuItem>
+        </Link>
+      );
+    });
+  };
+
+  
+// -x-responsiveness-x-
+
+
+  const { header, logoText, AppLogo, menuButton, toolbar,drawerContainer } = useStyles();
+ 
 
   const displayDesktop = () => {
-    return <Toolbar>{succulentLogo}{succulentLogoText}{getMenuButtons()}</Toolbar>;
+    return <Toolbar className={toolbar}>{succulentLogo}{succulentLogoText}<div >{getMenuButtons()}</div></Toolbar>;
   };
 
   const getMenuButtons = () => {
     return headersData.map(({ label, href }) => {
       return (
-        
+
         <Button
           {...{
             key: label,
@@ -65,7 +166,7 @@ export default function Header() {
         >
           {label}
         </Button>
-        
+
       );
     });
   };
@@ -90,13 +191,18 @@ export default function Header() {
 
   return (
     <header>
-      <AppBar className={header}>{displayDesktop()}</AppBar>
+      <AppBar className={header}> {mobileView ? displayMobile() : displayDesktop()}</AppBar>
     </header>
   );
+
+
 }
 
 const headersData = [
-
+  {
+    label: "Home",
+    href: "/",
+  },
   {
     label: "Shop",
     href: "/shop",
@@ -108,10 +214,10 @@ const headersData = [
   {
     label: "Contact",
     href: "/contact",
-  }, 
+  },
   {
     label: "Register",
     href: "/register",
-  }, 
+  },
 ];
 
