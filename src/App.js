@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
+import Shop from './shop/Shop';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <Header/>
-      
+        <Shop />
     </div>
   );
 }
