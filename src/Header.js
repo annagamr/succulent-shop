@@ -38,9 +38,9 @@ const useStyles = makeStyles(() => ({
     height: '9vmin',
     "@media (max-width: 900px)": {
       left: "55px",
-      top:"5px",
+      top:"4px",
       width: '60px',
-      height: '55px',
+      height: '65px',
     },
 
   },
@@ -57,8 +57,16 @@ const useStyles = makeStyles(() => ({
 
   },
   drawerContainer: {
-    padding: "20px 30px",
+    padding: "20px 40px",
+    height: "100%",
+  },
+  menuButtonResp: {
+    fontSize: "20px",
+    fontFamily: "Work Sans, sans-serif",
+    lineHeight: "55px"
+
   }
+  
 
 
 }));
@@ -90,7 +98,6 @@ export default function Header() {
       window.removeEventListener("resize", () => setResponsiveness());
     }
   }, []);
-
   const displayMobile = () => {
     const handleDrawerOpen = () =>
       setState((prevState) => ({ ...prevState, drawerOpen: true }));
@@ -110,12 +117,14 @@ export default function Header() {
         >
           <MenuIcon />
         </IconButton>
-        <Drawer
+        <Drawer 
           {...{
             anchor: "left",
             open: drawerOpen,
             onClose: handleDrawerClose,
+            
           }}
+          PaperProps={{ style: { height: "53vh", top:"81px",width:"200px", WebkitBorderBottomRightRadius:"20px", backgroundColor:"white" } }}
         >
           <div className={drawerContainer}>{getDrawerChoices()}</div>
         </Drawer>
@@ -126,17 +135,29 @@ export default function Header() {
   const getDrawerChoices = () => {
     return headersData.map(({ label, href }) => {
       return (
-        <Link
-          {...{
-            component: RouterLink,
-            to: href,
-            color: "inherit",
-            style: { textDecoration: "none" },
-            key: label,
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
+        // <Link 
+        //   {...{
+        //     component: RouterLink,
+        //     to: href,
+        //     color: "inherit",
+        //     style: { textDecoration: "none" },
+        //     key: label,
+        //     className: menuButtonResp
+
+        //   }}
+        // >
+        //   <MenuItem>{label}</MenuItem>
+        // </Link>
+        <Button
+        {...{
+          key: label,
+          to: href,
+          component: RouterLink,
+          className: menuButtonResp
+        }}
+      >
+        {label}
+      </Button>
       );
     });
   };
@@ -145,7 +166,7 @@ export default function Header() {
 // -x-responsiveness-x-
 
 
-  const { header, logoText, AppLogo, menuButton, toolbar,drawerContainer } = useStyles();
+  const { header, logoText, AppLogo, menuButton, toolbar,drawerContainer,menuButtonResp} = useStyles();
  
 
   const displayDesktop = () => {
