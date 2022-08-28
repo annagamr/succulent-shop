@@ -1,5 +1,5 @@
 import Shop from '../shop/Shop';
-import Header from '../Header';
+import Header from '../Components/Header';
 
 export default function Shopping() {
     return (
