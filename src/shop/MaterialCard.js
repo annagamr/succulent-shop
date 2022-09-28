@@ -13,8 +13,7 @@ export default function MediaCard(props) {
         height: "22vw", 
         marginRight: "2vw",
         marginLeft: "2vw",
-        marginBottom: "2vw",
-        marginLeft: "2vw",
+        marginBottom: "2vw"
       };
     return (
     <Card style={cardStyle}>

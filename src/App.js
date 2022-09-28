@@ -1,5 +1,6 @@
 import './App.css';
 import Header from '../src/Components/Header';
+import Carousel from '../src/Components/Carousel';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <Header/>
+        <Carousel/>
     </div>
   );
 }
