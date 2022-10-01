@@ -1,43 +1,63 @@
 .App {
   text-align: center;
-  width: 100%;
+
 }
 
-
-.container {
-  width: 95%;
-  margin-left:35px;
-  height: 95vh;
-  background: #fff7f7;
+.slick-initialized {
+  width: 97%;
+  height: 80vh;
+  background-color: #fff7f7;
+  margin: auto;
 }
 
-.container img {
-  height: 95vh;
-  
+.slide1 img, .slide2 img{
+  height: 80vh;
   float: right;
 }
 
-.container h2 {
-  position: absolute;
-  top:130px;
-  left: 80px;
-  text-align: left;
-  font-size: 45px;
-  font-family:Arial, Helvetica, sans-serif;
-  line-height: 80px;
+.slide1Text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 60px;
+  line-height: 95px;
   color: #545454;
+  margin-top: 105px;
+  margin-left: 100px;
+  text-align: left;
 }
 
-.container button {
-  position: absolute;
-  top:500px;
-  left: 80px;
-  padding: 12px 30px;
-  background-color: #ff6060;
-  border: none;
-  color: white;
-  font-family:sans-serif;
-  font-weight: bold;
-  font-size: 20px;
+.slide2Text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 40px;
+  line-height: 80px;
+  color: #545454;
+  margin-top: 200px;
+  margin-left: 10px;
+}
 
+.slide1 button 
+{
+  width: 160px;
+  height: 60px;
+  font-size: 23px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: white;
+  background: #ff6060;
+  border: none;
+  position: relative;
+  margin-left: -790px;
+}
+
+.slide2 button 
+{
+  width: 160px;
+  height: 60px;
+  font-size: 23px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: white;
+  background: #ff6060;
+  border: none;
+  position: relative;
+  margin-top: 80px;
 }

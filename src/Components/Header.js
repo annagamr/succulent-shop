@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#bddcba",
     height: "80px",
+    width: "100%",
     paddingRight: "30px",
     paddingTop: "10px",
     "@media (max-width: 900px)": {
