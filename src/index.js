@@ -8,17 +8,24 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Shopping from "./routes/shopping"
+import Shopping from './routes/shopping';
+import Register from './register';
+import Login from './login';
+import { AuthProvider } from './context/AuthProvider'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="shop" element={<Shopping />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="shop" element={<Shopping />} />
+          <Route path="register" element={<Register/>} />
+          <Route path="login" element={<Login></Login>} />
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
